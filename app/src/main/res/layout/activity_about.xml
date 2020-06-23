@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context="zzz.despair.progetto_antifurto.About">
 
+<!--    https://cloud.smartdraw.com/-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,4 +5,8 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="color_status_on">#66F9B0</color>
     <color name="color_status_off">#971528</color>
+    <color name="sensors_background">#232222</color>
+    <color name="sensor_ok">#4FEA0D</color>
+    <color name="sensor_not_ok">#EA0D0D</color>
+    <color name="text_color">#221F1F</color>
 </resources>

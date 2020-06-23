@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         p.start();
         loop.start();
 
-        Log.d("tag", "In onCreate");    //.d  d--> debug
+        Log.d("tag", "MainActivity in onCreate");    //.d  d--> debug
     }
 
 
@@ -168,7 +168,7 @@ String jambo = "0";
 
 
 
-        Log.d("tag", "In onStart");    //.d  d--> debug
+        Log.d("tag", "MainActivity in onStart");    //.d  d--> debug
 
         if(loop.java_dict != null) {    //genera eccezione, al primo avvio dell'app, queste istruzioni sono solo per testing e per reference, rimuovere nella versione finale
             Log.d("Testing", loop.java_dict);
@@ -181,21 +181,21 @@ String jambo = "0";
     protected void onResume() {
         super.onResume();
 
-        Log.d("tag", "In onResume");    //.d  d--> debug
+        Log.d("tag", "MainActivity in onResume");    //.d  d--> debug
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        Log.d("tag", "In onPause");    //.d  d--> debug
+        Log.d("tag", "MainActivity in onPause");    //.d  d--> debug
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        Log.d("tag", "In onStop");    //.d  d--> debug
+        Log.d("tag", "MainActivity in onStop");    //.d  d--> debug
     }
 
     @Override
@@ -206,6 +206,6 @@ String jambo = "0";
         PyObject pyf = py.getModule("Antifurto_main");
         PyObject obj = pyf.callAttr("on_Destroy");
 
-        Log.d("tag", "In onDestroy");    //.d  d--> debug
+        Log.d("tag", "MainActivity in onDestroy");    //.d  d--> debug
     }
 }

@@ -33,8 +33,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.617">
+        app:layout_constraintVertical_bias="0.654">
 
         <Button
             android:id="@+id/button_sensor"
@@ -92,18 +92,20 @@
     <ImageButton
         android:id="@+id/imageButton_master"
         android:layout_width="378dp"
-        android:layout_height="175dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
         android:background="@color/color_status_off"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:padding="10dp"
-        android:layout_marginTop="20dp"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_margin="30dp"
+        android:layout_marginBottom="10dp"
         app:srcCompat="@drawable/ic_action_name" />
 
 
