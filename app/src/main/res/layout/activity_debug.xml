@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Toggle windows"
+            android:text="Toggle sensors"
             android:textColor="@color/text_color"
             android:textSize="30sp"
              />
@@ -117,24 +117,36 @@
             android:padding="10dp"
             android:text="Sensore Finestra 4" />
 
-        <TextView
-            android:id="@+id/textView_toggle_door"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Toggle door"
-            android:textColor="@color/text_color"
-            android:textSize="30sp" />
-
         <Switch
             android:id="@+id/switch_door"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
             android:padding="10dp"
-            android:textSize="18sp"
-            android:text="Sensore porta" />
+            android:text="Sensore porta"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
+        <Switch
+            android:id="@+id/switch_movement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Sensore di movimento"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
+        <Switch
+            android:id="@+id/switch_siren"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Sirena"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button_apply_toggle_sensors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Applica Toggle sensors" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
