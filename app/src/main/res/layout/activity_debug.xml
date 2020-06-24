@@ -28,68 +28,112 @@
         app:layout_constraintTop_toTopOf="@+id/imageView">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textView_toggle_functions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:gravity="center"
-            android:drawableTint="#672E2E"
-            android:text="TextView" />
+            android:textColor="@color/text_color"
+            android:padding="10dp"
+            android:text="Toggle functions" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/switch_tab_sensors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
             android:padding="10dp"
+            android:textSize="18sp"
+            android:enabled="true"
+            android:checked="true"
             android:text="Tab Sensori" />
 
         <Switch
-            android:id="@+id/switch2"
+            android:id="@+id/switch_tab_log"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:enabled="true"
+            android:checked="true"
             android:padding="10dp"
+            android:textSize="18sp"
             android:text="Tab Log" />
 
         <Switch
-            android:id="@+id/switch3"
+            android:id="@+id/switch_tab_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:enabled="true"
+            android:checked="true"
             android:padding="10dp"
+            android:textSize="18sp"
             android:text="Tab About" />
 
-        <Switch
-            android:id="@+id/switch4"
+        <TextView
+            android:id="@+id/textView_toggle_windows"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:padding="10dp"
+            android:text="Toggle windows"
+            android:textColor="@color/text_color"
+            android:textSize="30sp"
+             />
+
+        <Switch
+            android:id="@+id/switch_win1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:padding="10dp"
+            android:textSize="18sp"
             android:text="Sensore Finestra 1" />
 
         <Switch
-            android:id="@+id/switch5"
+            android:id="@+id/switch_win2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
             android:padding="10dp"
+            android:textSize="18sp"
             android:text="Sensore Finestra 2" />
 
         <Switch
-            android:id="@+id/switch6"
+            android:id="@+id/switch_win3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
             android:padding="10dp"
+            android:textSize="18sp"
             android:text="Sensore Finestra 3" />
 
         <Switch
-            android:id="@+id/switch7"
+            android:id="@+id/switch_win4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
             android:padding="10dp"
             android:text="Sensore Finestra 4" />
 
-        <Switch
-            android:id="@+id/switch8"
+        <TextView
+            android:id="@+id/textView_toggle_door"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:padding="10dp"
+            android:text="Toggle door"
+            android:textColor="@color/text_color"
+            android:textSize="30sp" />
+
+        <Switch
+            android:id="@+id/switch_door"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:padding="10dp"
+            android:textSize="18sp"
             android:text="Sensore porta" />
 
     </LinearLayout>

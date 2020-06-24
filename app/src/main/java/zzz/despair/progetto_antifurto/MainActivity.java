@@ -15,12 +15,15 @@ import com.chaquo.python.android.AndroidPlatform;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView help_text;
     FloatingActionButton refresh;
     Button sensors, log, about, debug;
     ImageButton master;
+
+    String cycle_life = "MainActivity ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +49,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         master = findViewById(R.id.imageButton_master);
         master.setOnClickListener(this);
 
-        p.start();
+//        p.start(); togliere il commento
         loop.start();
 
-        Log.d("tag", "MainActivity in onCreate");    //.d  d--> debug
+        Log.d("tag", cycle_life + "in onCreate");    //.d  d--> debug
     }
 
 
 String jambo = "0";
     @Override
-    public void onClick(View view_l) {
-        switch (view_l.getId()) {
+    public void onClick(View view_debug) {
+        switch (view_debug.getId()) {
 
             case R.id.floatingActionButton:
                 if(loop.java_dict != null) {    //genera eccezione, al primo avvio dell'app, queste istruzioni sono solo per testing e per reference, rimuovere nella versione finale
@@ -72,23 +75,23 @@ String jambo = "0";
                 break;
 
             case R.id.button_sensor:
-                Intent intent_sensor = new Intent(MainActivity.this, Sensors.class); //in questo modo creo un oggetto intent che dall'Activity_One richiama l'Activity_Two
-                startActivity (intent_sensor); //avvio l'oggetto intent -->avvio l'Activity_Two
+                Intent intent_sensor = new Intent(MainActivity.this, Sensors.class); //in questo modo creo un oggetto intent che dalla MainActivity richiama Sensors
+                startActivity (intent_sensor); //avvio l'oggetto intent -->avvio Sensors
                 break;
 
             case R.id.button_supersu:
-                Intent intent_supersu = new Intent(MainActivity.this, Debug.class); //in questo modo creo un oggetto intent che dall'Activity_One richiama l'Activity_Two
-                startActivity (intent_supersu); //avvio l'oggetto intent -->avvio l'Activity_Two
+                Intent intent_supersu = new Intent(MainActivity.this, Debug.class);
+                startActivity (intent_supersu);
                 break;
 
             case R.id.button_about:
-                Intent intent_about = new Intent(MainActivity.this, About.class); //in questo modo creo un oggetto intent che dall'Activity_One richiama l'Activity_Two
-                startActivity (intent_about); //avvio l'oggetto intent -->avvio l'Activity_Two
+                Intent intent_about = new Intent(MainActivity.this, About.class);
+                startActivity (intent_about);
                 break;
 
             case R.id.button_log:
-                Intent intent_log = new Intent(MainActivity.this, zzz.despair.progetto_antifurto.Log.class); //in questo modo creo un oggetto intent che dall'Activity_One richiama l'Activity_Two
-                startActivity (intent_log); //avvio l'oggetto intent -->avvio l'Activity_Two
+                Intent intent_log = new Intent(MainActivity.this, zzz.despair.progetto_antifurto.Log.class);
+                startActivity (intent_log);
                 break;
 
             case R.id.imageButton_master:
@@ -100,12 +103,6 @@ String jambo = "0";
                 help_text.setText(getResources().getString(R.string.text_help_1));
                 master.setBackgroundColor(getResources().getColor(R.color.color_status_on));
                 break;
-
-
-
-
-
-
         }
     }
 
@@ -163,17 +160,17 @@ String jambo = "0";
 
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+//        https://stackoverflow.com/questions/7174832/how-to-use-putextra-with-flag-activity-reorder-to-front-in-android-apps
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
 
-
-
-        Log.d("tag", "MainActivity in onStart");    //.d  d--> debug
-
-        if(loop.java_dict != null) {    //genera eccezione, al primo avvio dell'app, queste istruzioni sono solo per testing e per reference, rimuovere nella versione finale
-            Log.d("Testing", loop.java_dict);
-        }
-
+        Log.d("tag", cycle_life + "in onStart");    //.d  d--> debug
 
     }
 
@@ -181,21 +178,41 @@ String jambo = "0";
     protected void onResume() {
         super.onResume();
 
-        Log.d("tag", "MainActivity in onResume");    //.d  d--> debug
+//        codice messo in resume perchè in start non lo prende, bisogna richiamare start più volte per farglielo prendere
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            boolean main_bool_sensors = extras.getBoolean("bool_sensors");
+            if (main_bool_sensors) sensors.setEnabled(true);
+            else sensors.setEnabled(false);
+
+            boolean main_bool_log = extras.getBoolean("bool_log");
+            if (main_bool_log) log.setEnabled(true);
+            else log.setEnabled(false);
+
+            boolean main_bool_about = extras.getBoolean("bool_about");
+            if (main_bool_about) about.setEnabled(true);
+            else about.setEnabled(false);
+        }
+
+//        codice messo in resume perchè in start non lo prende, bisogna richiamare start più volte per farglielo prendere
+
+
+
+        Log.d("tag", cycle_life + "in onResume");    //.d  d--> debug
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        Log.d("tag", "MainActivity in onPause");    //.d  d--> debug
+        Log.d("tag", cycle_life + "in onPause");    //.d  d--> debug
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        Log.d("tag", "MainActivity in onStop");    //.d  d--> debug
+        Log.d("tag", cycle_life + "in onStop");    //.d  d--> debug
     }
 
     @Override
@@ -206,6 +223,6 @@ String jambo = "0";
         PyObject pyf = py.getModule("Antifurto_main");
         PyObject obj = pyf.callAttr("on_Destroy");
 
-        Log.d("tag", "MainActivity in onDestroy");    //.d  d--> debug
+        Log.d("tag", cycle_life + "in onDestroy");    //.d  d--> debug
     }
 }
