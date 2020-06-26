@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class Debug extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
-    Switch tab_sensors, tab_about, tab_log, toggle_win1, toggle_win2, toggle_win3, toggle_win4, toggle_door, toggle_movement, toggle_siren;
+    Switch tab_sensors, tab_about, tab_log, toggle_win1, toggle_win2, toggle_win3, toggle_win4, toggle_door, toggle_motion, toggle_siren;
     String cycle_life = "Debug ";
     Button toggle_apply;
 
@@ -40,8 +40,8 @@ public class Debug extends AppCompatActivity implements CompoundButton.OnChecked
         toggle_win4.setOnCheckedChangeListener(this);
         toggle_door=findViewById(R.id.switch_door);
         toggle_door.setOnCheckedChangeListener(this);
-        toggle_movement=findViewById(R.id.switch_movement);
-        toggle_movement.setOnCheckedChangeListener(this);
+        toggle_motion =findViewById(R.id.switch_motion);
+        toggle_motion.setOnCheckedChangeListener(this);
         toggle_siren=findViewById(R.id.switch_siren);
         toggle_siren.setOnCheckedChangeListener(this);
         toggle_apply=findViewById(R.id.button_apply_toggle_sensors);
@@ -79,13 +79,13 @@ public class Debug extends AppCompatActivity implements CompoundButton.OnChecked
     boolean bool_switch_tab_about = true;
     boolean bool_switch_tab_log = true;
 
-    boolean bool_win1;
-    boolean bool_win2;
-    boolean bool_win3;
-    boolean bool_win4;
-    boolean bool_door;
-    boolean bool_movement;
-    boolean bool_siren;
+    boolean bool_win1 = true;
+    boolean bool_win2 = true;
+    boolean bool_win3 = true;
+    boolean bool_win4 = true;
+    boolean bool_door = true;
+    boolean bool_motion = true;
+    boolean bool_siren = true;
 
 
     @Override
@@ -108,7 +108,7 @@ public class Debug extends AppCompatActivity implements CompoundButton.OnChecked
                 editor.putBoolean("switchkey_tab_sensors", isChecked); // salvo le preferenze
                 editor.apply(); // commit salvo le preferenze
 
-                Log.d("Bool tab_sensors", String.valueOf(bool_switch_tab_sensors));
+                Log.d("Bool_tab_sensors", String.valueOf(bool_switch_tab_sensors));
                 break;
 
             case R.id.switch_tab_about:
@@ -123,7 +123,7 @@ public class Debug extends AppCompatActivity implements CompoundButton.OnChecked
                 editor.putBoolean("switchkey_tab_about", isChecked); // salvo le preferenze
                 editor.commit(); // commit salvo le preferenze
 
-                Log.d("Bool tab_about", String.valueOf(bool_switch_tab_about));
+                Log.d("Bool_tab_about", String.valueOf(bool_switch_tab_about));
 
 
                 break;
@@ -141,65 +141,70 @@ public class Debug extends AppCompatActivity implements CompoundButton.OnChecked
                 editor.putBoolean("switchkey_tab_log", isChecked); // salvo le preferenze
                 editor.commit(); // commit salvo le preferenze
 
-                Log.d("Bool tab_log", String.valueOf(bool_switch_tab_log));
+                Log.d("Bool_tab_log", String.valueOf(bool_switch_tab_log));
                 break;
 
 
 
             case R.id.switch_win1:
                 if (isChecked){
-                    bool_win1=true;
+                    bool_win1=false;
                 }
                 else{
-                    bool_win1=false;
+                    bool_win1=true;
                 }
                 break;
 
             case R.id.switch_win2:
                 if (isChecked){
-                    bool_win2=true;
+                    bool_win2=false;
                 }
                 else{
-                    bool_win2=false;
+                    bool_win2=true;
                 }
                 break;
 
             case R.id.switch_win3:
                 if (isChecked){
-                    bool_win3=true;
+                    bool_win3=false;
             }
                 else {
-                    bool_win3=false;
+                    bool_win3=true;
                 }
                 break;
 
             case R.id.switch_win4:
                 if (isChecked){
-                    bool_win4=true;
+                    bool_win4=false;
                 }
                 else {
-                    bool_win4=false;
+                    bool_win4=true;
                 }
                 break;
 
             case R.id.switch_door:
                 if (isChecked){
-                    bool_door=true;
-                }
-                else {
                     bool_door=false;
                 }
+                else {
+                    bool_door=true;
+                }
                 break;
-            case R.id.switch_movement:
+            case R.id.switch_motion:
                 if (isChecked){
-                    bool_movement= true;
+                    bool_motion = false;
                 }
                 else {
-                    bool_movement=false;
+                    bool_motion =true;
                 }
                 break;
             case R.id.switch_siren:
-                bool_siren= isChecked;
+                if (isChecked){
+                    bool_siren= false;
+                }
+                else {
+                    bool_siren = true;
+                }
                 break;
 
         }
@@ -255,7 +260,7 @@ public class Debug extends AppCompatActivity implements CompoundButton.OnChecked
                 intent_set_sensor.putExtra("bool_switch_win3", bool_win3);
                 intent_set_sensor.putExtra("bool_switch_win4", bool_win4);
                 intent_set_sensor.putExtra("bool_switch_door",bool_door);
-                intent_set_sensor.putExtra("bool_switch_movement",bool_movement);
+                intent_set_sensor.putExtra("bool_switch_motion", bool_motion);
                 intent_set_sensor.putExtra("bool_switch_siren",bool_siren);
 
                 startActivity(intent_set_sensor);

@@ -6,4 +6,50 @@
     android:layout_height="match_parent"
     tools:context="zzz.despair.progetto_antifurto.Log">
 
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="552dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/refresh_log"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.241">
+
+            <TextView
+                android:id="@+id/textwiew_log"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="3dip"
+                android:text="@string/string_log"
+                android:textSize="20sp" />
+        </ScrollView>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/refresh_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh log"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

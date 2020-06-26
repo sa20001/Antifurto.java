@@ -7,16 +7,16 @@ import paho.mqtt.publish as publish
 import encodings.idna
 
 from os.path import dirname, join
-filename = join(dirname(__file__), "cfg.json")
+file_cfg = join(dirname(__file__), "cfg.json")
 
-read_file = open(filename, "r")  # apre il file cfg.json in modalità read (lettura)
-file_read = read_file.read()  # creo variabile file_read che corrisponde alla lettura del file
-read_file.close()
-# print(read_file)
-# print(type(read_file))
+read_file_cfg = open(file_cfg, "r")  # apre il file cfg.json in modalità read (lettura)
+file_read_cfg = read_file_cfg.read()  # creo variabile file_read che corrisponde alla lettura del file
+read_file_cfg.close()
+# print(read_file_cfg)
+# print(type(read_file_cfg))
 
 
-cfg_dict = ast.literal_eval(file_read)  # converto il la variabile file_read (str) in dizionario
+cfg_dict = ast.literal_eval(file_read_cfg)  # converto il la variabile file_read (str) in dizionario
 # print(type(cfg_dict))
 # print(cfg_dict)
 

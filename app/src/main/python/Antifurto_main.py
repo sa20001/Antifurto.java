@@ -3,17 +3,84 @@ import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 import ast  # da bytecode a dictionary
 import Antifurto_centralina
-from termcolor import colored
 import encodings.idna
+from os.path import dirname, join
 
+file_parameters = join(dirname(__file__), "parameters.json")
+read_file_parameters = open(file_parameters, "r")  # apre il file cfg.json in modalità read (lettura)
+file_read_parameters = read_file_parameters.read()  # creo variabile file_read che corrisponde alla lettura del file
+read_file_parameters.close()
+
+server_response_dictionary = ast.literal_eval(file_read_parameters)  #inizializzo il server_response_dictionary
 server_response = None
-server_response_dictionary = 0  # inizializzata a 0 in caso di eccezione
 program_killer = None
 
 def pass_dict():
     pass_dict_var = str(server_response_dictionary)
     return pass_dict_var
 
+# nego i bool per riutilizzare le key dell'intent per passare le key da debug.class a sensors.class
+def pass_sensor_win0():
+    sensor_list = server_response_dictionary["sensor_list"]
+
+    if sensor_list[0]["sensor_status"] == 0:
+        # print("IL SENSORE WIN1 HA VALORE 0")
+        bool_check = not False
+    else:
+        # print("IL SENSORE WIN1 HA VALORE 1")
+        bool_check = not True
+
+    # print("STAMPO IL VALORE DI BOOL CHECK" + str(bool_check))
+    return bool_check
+
+def pass_sensor_win1():
+    sensor_list = server_response_dictionary["sensor_list"]
+    if sensor_list[1]["sensor_status"] == 0:
+        bool_check = not False
+    else:
+        bool_check = not True
+    return bool_check
+
+def pass_sensor_win2():
+    sensor_list = server_response_dictionary["sensor_list"]
+    if sensor_list[2]["sensor_status"] == 0:
+        bool_check = not False
+    else:
+        bool_check = not True
+    return bool_check
+
+def pass_sensor_win3():
+    sensor_list = server_response_dictionary["sensor_list"]
+    if sensor_list[3]["sensor_status"] == 0:
+        bool_check = not False
+    else:
+        bool_check = not True
+    return bool_check
+
+def pass_sensor_door():
+    sensor_list = server_response_dictionary["sensor_list"]
+    if sensor_list[4]["sensor_status"] == 0:
+        bool_check = not False
+    else:
+        bool_check = not True
+    return bool_check
+
+def pass_sensor_motion():
+    sensor_list = server_response_dictionary["sensor_list"]
+    if sensor_list[5]["sensor_status"] == 0:
+        bool_check = not False
+    else:
+        bool_check = not True
+    return bool_check
+
+def pass_siren():
+    sensor_list = server_response_dictionary["sensor_list"]
+    if sensor_list[6]["sensor_status"] == 0:
+        bool_check = not False
+    else:
+        bool_check = not True
+    return bool_check
+# nego i bool per riutilizzare le key dell'intent per passare le key da debug.class a sensors.class
 
 def main_program():
 
@@ -79,12 +146,12 @@ def main_program():
                     for i in server_response_dictionary["sensor_list"]:  # stampo tutti valori della lista dei sensori
 
                         if i["sensor_status"] == 0:  # se il sensore non ha rilevato nulla
-                            print(colored(i["sensor_id"] + " No trigger", "blue"))
+                            print(i["sensor_id"] + " No trigger")
 
                         else:  # se il sensore ha rilevato qualcosa
                             checker = True
 
-                            print(colored(i["sensor_id"] + " Sì trigger", "yellow"))
+                            print(i["sensor_id"] + " Sì trigger")
                             publish.single(Antifurto_centralina.topic_base + Antifurto_centralina.device_id_alarm,
                                            payload="Someone triggered a sensor!!!",
                                            hostname=Antifurto_centralina.broker_server)
@@ -94,13 +161,13 @@ def main_program():
                             if element["sensor_id"] == "Siren":
                                 server_response_dictionary["sensor_list"][index][
                                     "sensor_status"] = 1  # cambia lo stato a 1 all'interno del dict
-                                print(colored(server_response_dictionary, "magenta"))   # debug
+                                print(server_response_dictionary)   # debug
                     # TODO: fino a qui creare array di sensori in android
 
                     break  # esco dal ciclo
 
             except (KeyError, ValueError, SyntaxError):  # gestisco l'eccezione solo se è ValueError e SyntaxError
-                print(colored("A ValueError, SyntaxError or KeyError occurred!!!", "red"))  # stampo in rosso
+                print("A ValueError, SyntaxError or KeyError occurred!!!")  # stampo in rosso
                 break  # esco dal ciclo
 
         client.loop_stop()  # stoppo il client
@@ -113,11 +180,11 @@ def main_program():
                     "System_status"]  # estraggo il valore della chiave "System_status" e lo associo alla variabile programm_killer
 
             except KeyError:  # gestisco l'eccezione solo se è KeyError
-                print(colored("Wrong key \"System_status\", maybe mistyped or missing\nCheck JSON sent", "red"))
-                print(colored("EXCEPTION CORRRECTLY HANDLED\nCheck \"System_status\" key", "green"))
+                print("Wrong key \"System_status\", maybe mistyped or missing\nCheck JSON sent")
+                print("EXCEPTION CORRRECTLY HANDLED\nCheck \"System_status\" key")
 
             if program_killer == "kill":  # se la key "System_status" ha valore "kill"
-                print(colored("Command \"kill\" received from Broker", "red"))
+                print("Command \"kill\" received from Broker")
 
                 publish.single(Antifurto_centralina.topic_base + Antifurto_centralina.device_id_kill,
                                payload="Message \"" + program_killer + "\" correctly received from server. System correctly terminated",
@@ -131,8 +198,8 @@ def main_program():
 
         else:
             # if errors occurred during conversion from bytecode to dicitonary
-            print(colored("RECEIVED BAD/WRONG MESSAGE FROM BROKER\nAST FAILED TO EVAL", "red"))
-            print(colored("EXCEPTION CORRRECTLY HANDLED\nMAKE SURE TO SEND CORRECT JSON FORMAT NEXT TIME", "green"))
+            print("RECEIVED BAD/WRONG MESSAGE FROM BROKER\nAST FAILED TO EVAL")
+            print("EXCEPTION CORRRECTLY HANDLED\nMAKE SURE TO SEND CORRECT JSON FORMAT NEXT TIME")
 
             # Publish multiple messages to a broker, then disconnect cleanly.
             multiple_publish = [{'topic': Antifurto_centralina.topic_base + Antifurto_centralina.device_id_error,

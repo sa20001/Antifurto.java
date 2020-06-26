@@ -95,7 +95,6 @@
         android:layout_height="200dp"
         android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
-        android:background="@color/color_status_off"
         android:padding="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -104,6 +103,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
+        android:background="@drawable/roundcorner_off"
         android:layout_margin="30dp"
         android:layout_marginBottom="10dp"
         app:srcCompat="@drawable/ic_action_name" />

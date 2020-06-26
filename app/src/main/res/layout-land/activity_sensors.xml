@@ -159,7 +159,7 @@
         app:srcCompat="@drawable/ic_sensor_ok" />
 
     <ImageView
-        android:id="@+id/imageView_movement"
+        android:id="@+id/imageView_motion"
         android:layout_width="119dp"
         android:layout_height="61dp"
         android:tint="@color/sensor_ok"
@@ -195,5 +195,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.943"
         app:srcCompat="@drawable/ic_warning" />
+
+    <Button
+        android:id="@+id/button_call_police"
+        android:layout_width="680dp"
+        android:layout_height="336dp"
+        android:background="@android:color/transparent"
+        android:text="Chiamo la polizia?"
+        android:textSize="50sp"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="@+id/imageView_sensors"
+        app:layout_constraintTop_toTopOf="@+id/imageView_sensors"
+        app:layout_constraintVertical_bias="0.476" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

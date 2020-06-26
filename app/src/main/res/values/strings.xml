@@ -10,5 +10,6 @@
     <string name="text_supersu">Debug</string>
     <string name="text_help">Premere il pulsante di accensione per avviare l\'app!</string>
     <string name="text_help_1">Premere il pulsante di refresh per aggiornare i dati!</string>
+    <string name="string_log">Nessun log, prova a dare le autorizzazioni per l\'accesso alla memoria</string>
 
 </resources>
